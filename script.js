@@ -33,6 +33,23 @@ function displayList(characters) {
     const characterName = document.createElement("p");
     characterName.innerText = `${character.name}`;
 
+    const tvIcon = document.createElement("img");
+    tvIcon.className = "tvIcon";
+    const tvShowsList = document.createElement("ul");
+    tvShowsList.className = "hidden";
+    if (character.tvShows.length) {
+      tvIcon.src = "./assets/tv_icon.png";
+      //   console.log(character.tvShows.join(" "));
+      //   tvShowsList.innerText = `${character.tvShows.join}`;
+      character.tvShows.forEach((tvShow) => {
+        const listElement = document.createElement("li");
+        listElement.innerText = `${tvShow}`;
+        // listElement.className = "hidden";
+
+        tvShowsList.append(listElement);
+      });
+    }
+
     const filmsCount = document.createElement("p");
     filmsCount.innerText = `${character.films.length}`;
 
@@ -45,6 +62,8 @@ function displayList(characters) {
     singleCharacter.append(
       characterImg,
       characterName,
+      tvIcon,
+      tvShowsList,
       filmsCount,
       addToFavoritesBtn
     );

@@ -13,4 +13,18 @@
 .singleCharacter {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+.tvIcon {
+  width: 40px;
+  cursor: pointer;
+}
+ul {
+  list-style-type: none;
+}
+.hidden {
+  display: none;
+}
+.tvIcon:hover + .hidden {
+  display: block;
 }
