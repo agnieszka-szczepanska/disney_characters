@@ -25,6 +25,15 @@ ul {
 .hidden {
   display: none;
 }
+.filledStar {
+  display: none;
+}
+.starsContainer:has(.filledStar)::after {
+  content: url("./assets/filledStar.png");
+}
+.vissible {
+  display: block;
+}
 .tvIcon:hover + .hidden {
   display: block;
 }

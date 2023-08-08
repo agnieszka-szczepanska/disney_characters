@@ -1,5 +1,6 @@
 const charactersContainer = document.querySelector(".charactersContainer");
 const favoritesList = document.querySelector(".favoritesContainer");
+const favoriteCharacters = [];
 
 function fetchCharacters() {
   fetch("https://api.disneyapi.dev/character", {
@@ -20,7 +21,6 @@ function displayList(characters) {
   const filmCharacters = characters.filter(
     (character) => character.films.length
   );
-  console.log("film character", filmCharacters);
 
   filmCharacters.forEach((character) => {
     const singleCharacter = document.createElement("div");
@@ -39,13 +39,9 @@ function displayList(characters) {
     tvShowsList.className = "hidden";
     if (character.tvShows.length) {
       tvIcon.src = "./assets/tv_icon.png";
-      //   console.log(character.tvShows.join(" "));
-      //   tvShowsList.innerText = `${character.tvShows.join}`;
       character.tvShows.forEach((tvShow) => {
         const listElement = document.createElement("li");
         listElement.innerText = `${tvShow}`;
-        // listElement.className = "hidden";
-
         tvShowsList.append(listElement);
       });
     }
@@ -53,11 +49,15 @@ function displayList(characters) {
     const filmsCount = document.createElement("p");
     filmsCount.innerText = `${character.films.length}`;
 
-    const addToFavoritesBtn = document.createElement("button");
-    addToFavoritesBtn.innerText = "Dodaj do ulubionych";
-    addToFavoritesBtn.addEventListener("click", () =>
+    const addToFavoritesStars = document.createElement("div");
+    addToFavoritesStars.className = "starsContainer";
+    addToFavoritesStars.addEventListener("click", () =>
       addToFavorites(character)
     );
+    addToFavoritesStars.addEventListener("click", () => changeStar(event));
+    const emptyStar = document.createElement("img");
+    emptyStar.src = "./assets/emptyStar.png";
+    addToFavoritesStars.append(emptyStar);
 
     singleCharacter.append(
       characterImg,
@@ -65,9 +65,32 @@ function displayList(characters) {
       tvIcon,
       tvShowsList,
       filmsCount,
-      addToFavoritesBtn
+      addToFavoritesStars
     );
   });
+}
+
+function changeStar(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  event.stopImmediatePropagation();
+  console.log(event.target);
+  event.target.classList.toggle("filledStar");
+}
+
+function addToFavorites(selectedCharacter) {
+  const favoritesIds = favoriteCharacters.map(
+    (favoriteCharacter) => favoriteCharacter._id
+  );
+
+  if (favoritesIds.includes(selectedCharacter._id)) {
+    const favoriteIndex = favoritesIds.indexOf(selectedCharacter._id);
+    favoriteCharacters.splice(favoriteIndex, 1);
+    console.log(favoriteCharacters);
+    return;
+  }
+  favoriteCharacters.push(selectedCharacter);
+  console.log(favoriteCharacters);
 }
 
 fetchCharacters();
