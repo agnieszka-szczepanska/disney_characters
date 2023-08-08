@@ -1,7 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .container {
   display: flex;
 }
 .charactersContainer {
   display: flex;
   flex-direction: column;
+}
+.singleCharacter {
+  display: flex;
+  justify-content: space-between;
 }
