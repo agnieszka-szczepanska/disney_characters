@@ -1,6 +1,8 @@
 const charactersContainer = document.querySelector(".charactersContainer");
 const favoritesList = document.querySelector(".favoritesContainer");
 const popularCharacters = document.querySelector(".mostPopularCharacters");
+const searchSection = document.querySelector(".searchSection");
+
 const favoriteCharacters = [];
 
 function fetchCharacters() {
