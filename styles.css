@@ -25,10 +25,14 @@ ul {
 .hidden {
   display: none;
 }
-.filledStar {
-  display: none;
+
+.star::after {
+  content: url("./assets/emptyStar.png");
 }
-.starsContainer:has(.filledStar)::after {
+.filled::after {
+  content: url("./assets/filledStar.png");
+}
+.favoritesContainer .star::after {
   content: url("./assets/filledStar.png");
 }
 .vissible {
