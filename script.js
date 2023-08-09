@@ -9,7 +9,6 @@ function fetchCharacters() {
     .then((result) => result.json())
     .then((result) => {
       const characters = result?.data || [];
-      console.log(characters);
       displayList(characters, charactersContainer);
     })
     .catch((error) => {
@@ -51,11 +50,12 @@ function displayList(characters, container) {
 
     const addToFavoritesStars = document.createElement("div");
     addToFavoritesStars.classList = "starsContainer star";
+    addToFavoritesStars.id = `star${character._id}`;
     addToFavoritesStars.addEventListener("click", () =>
       addToFavorites(character)
     );
     addToFavoritesStars.addEventListener("click", () =>
-      changeStar(event, character)
+      changeStar(character._id)
     );
 
     singleCharacter.append(
@@ -69,9 +69,9 @@ function displayList(characters, container) {
   });
 }
 
-function changeStar(event) {
-  event.target.classList.toggle("filled");
-  console.log(event.target);
+function changeStar(starId) {
+  const selectedStar = document.querySelector(`#star${starId}`);
+  selectedStar.classList.toggle("filled");
 }
 
 function addToFavorites(selectedCharacter) {
@@ -82,13 +82,11 @@ function addToFavorites(selectedCharacter) {
   if (favoritesIds.includes(selectedCharacter._id)) {
     const favoriteIndex = favoritesIds.indexOf(selectedCharacter._id);
     favoriteCharacters.splice(favoriteIndex, 1);
-    console.log("favoriteCharacters", favoriteCharacters);
     favoritesList.innerText = "";
     displayList(favoriteCharacters, favoritesList);
     return;
   }
   favoriteCharacters.push(selectedCharacter);
-  console.log("favoriteCharacters", favoriteCharacters);
   favoritesList.innerText = "";
   displayList(favoriteCharacters, favoritesList);
 }
