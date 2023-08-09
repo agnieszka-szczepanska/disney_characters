@@ -25,7 +25,9 @@ ul {
 .hidden {
   display: none;
 }
-
+.star {
+  cursor: pointer;
+}
 .star::after {
   content: url("./assets/emptyStar.png");
 }
@@ -40,4 +42,11 @@ ul {
 }
 .tvIcon:hover + .hidden {
   display: block;
+}
+.mostPopularCharacters {
+  display: flex;
+}
+.popularCharacter div {
+  display: flex;
+  justify-content: space-between;
 }

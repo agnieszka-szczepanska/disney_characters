@@ -1,5 +1,6 @@
 const charactersContainer = document.querySelector(".charactersContainer");
 const favoritesList = document.querySelector(".favoritesContainer");
+const popularCharacters = document.querySelector(".mostPopularCharacters");
 const favoriteCharacters = [];
 
 function fetchCharacters() {
@@ -10,6 +11,7 @@ function fetchCharacters() {
     .then((result) => {
       const characters = result?.data || [];
       displayList(characters, charactersContainer);
+      displayPopularCharacters(characters);
     })
     .catch((error) => {
       console.log(error);
@@ -70,8 +72,10 @@ function displayList(characters, container) {
 }
 
 function changeStar(starId) {
-  const selectedStar = document.querySelector(`#star${starId}`);
-  selectedStar.classList.toggle("filled");
+  const selectedStar = document.querySelectorAll(`#star${starId}`);
+  selectedStar.forEach((star) => {
+    star.classList.toggle("filled");
+  });
 }
 
 function addToFavorites(selectedCharacter) {
@@ -89,6 +93,60 @@ function addToFavorites(selectedCharacter) {
   favoriteCharacters.push(selectedCharacter);
   favoritesList.innerText = "";
   displayList(favoriteCharacters, favoritesList);
+}
+
+function displayPopularCharacters(characters) {
+  const sortedCharacters = characters
+    .sort((a, b) => b.films.length - a.films.length)
+    .splice(0, 3);
+  console.log(sortedCharacters);
+
+  sortedCharacters.forEach((character) => {
+    const singleCharacter = document.createElement("div");
+    singleCharacter.className = "popularCharacter";
+    popularCharacters.append(singleCharacter);
+
+    const characterImg = document.createElement("img");
+    characterImg.src = `${character.imageUrl}`;
+
+    const nameContainer = document.createElement("div");
+    const characterName = document.createElement("p");
+    characterName.innerText = `${character.name}`;
+    nameContainer.append(characterName);
+
+    const favoritesIds = favoriteCharacters.map(
+      (favoriteCharacter) => favoriteCharacter._id
+    );
+
+    const star = document.createElement("div");
+    star.id = `star${character._id}`;
+
+    if (favoritesIds.includes(character._id)) {
+      star.id = `star${character._id}`;
+    }
+    nameContainer.append(star);
+
+    const filmContainer = document.createElement("div");
+    const film = document.createElement("p");
+    film.innerText = "Films:";
+    const filmNumber = document.createElement("p");
+    filmNumber.innerText = `${character.films.length}`;
+    filmContainer.append(film, filmNumber);
+
+    const tvContainer = document.createElement("div");
+    const tvShows = document.createElement("p");
+    tvShows.innerText = "Tv Shows:";
+    const tvShowsNumber = document.createElement("p");
+    tvShowsNumber.innerText = `${character.tvShows.length}`;
+    tvContainer.append(tvShows, tvShowsNumber);
+
+    singleCharacter.append(
+      characterImg,
+      nameContainer,
+      filmContainer,
+      tvContainer
+    );
+  });
 }
 
 fetchCharacters();
