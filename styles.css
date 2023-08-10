@@ -2,8 +2,68 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
+
+header {
+  background-color: rgb(207, 206, 206);
+  font-size: 0.5rem;
+  line-height: 1.5rem;
+}
+.mostPopularCharactersContainer {
+  background-color: rgb(207, 206, 206);
+  margin: 20px 0 50px 0;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mostPopularCharactersContainer h1 {
+  text-align: center;
+}
+.mostPopularCharacters {
+  display: flex;
+  gap: 20px;
+  margin: 10px 0 -20px 0;
+}
+.popularCharacter {
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  height: 250px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 2px 0px 10px gray;
+  overflow: hidden;
+}
+.popularCharacter img {
+  min-width: 150px;
+  min-height: 150px;
+}
+.characterDataContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px;
+  padding: 5px 10px;
+}
+
+.popularData {
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.popularData div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchSection {
+  background-color: rgb(207, 206, 206);
+}
+
 .container {
+  background-color: rgb(207, 206, 206);
   display: flex;
 }
 .charactersContainer {
@@ -42,15 +102,4 @@ ul {
 }
 .tvIcon:hover + .hidden {
   display: block;
-}
-.mostPopularCharacters {
-  display: flex;
-}
-.popularCharacter div {
-  display: flex;
-  justify-content: space-between;
-}
-
-img {
-  max-width: 75px;
 }

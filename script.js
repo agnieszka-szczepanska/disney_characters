@@ -37,12 +37,15 @@ function displayList(characters, container) {
 
     const characterImg = document.createElement("img");
     characterImg.src = `${character.imageUrl}`;
+    characterImg.alt = "character image";
 
     const characterName = document.createElement("p");
     characterName.innerText = `${character.name}`;
 
     const tvIcon = document.createElement("img");
     tvIcon.className = "tvIcon";
+    tvIcon.alt = "tv icon";
+
     const tvShowsList = document.createElement("ul");
     tvShowsList.className = "hidden";
     if (character.tvShows.length) {
@@ -109,7 +112,6 @@ function displayPopularCharacters(characters) {
   const sortedCharacters = [...characters]
     .sort((a, b) => b.films.length - a.films.length)
     .splice(0, 3);
-  console.log(sortedCharacters);
 
   sortedCharacters.forEach((character) => {
     const singleCharacter = document.createElement("div");
@@ -118,6 +120,10 @@ function displayPopularCharacters(characters) {
 
     const characterImg = document.createElement("img");
     characterImg.src = `${character.imageUrl}`;
+    characterImg.alt = "character image";
+
+    characterDataContainer = document.createElement("div");
+    characterDataContainer.classList = "characterDataContainer";
 
     const nameContainer = document.createElement("div");
     const characterName = document.createElement("p");
@@ -136,6 +142,8 @@ function displayPopularCharacters(characters) {
     }
     nameContainer.append(star);
 
+    const dataContainer = document.createElement("div");
+    dataContainer.classList = "popularData";
     const filmContainer = document.createElement("div");
     const film = document.createElement("p");
     film.innerText = "Films:";
@@ -150,12 +158,9 @@ function displayPopularCharacters(characters) {
     tvShowsNumber.innerText = `${character.tvShows.length}`;
     tvContainer.append(tvShows, tvShowsNumber);
 
-    singleCharacter.append(
-      characterImg,
-      nameContainer,
-      filmContainer,
-      tvContainer
-    );
+    singleCharacter.append(characterImg, characterDataContainer);
+    characterDataContainer.append(nameContainer, dataContainer);
+    dataContainer.append(filmContainer, tvContainer);
   });
 }
 
