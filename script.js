@@ -2,6 +2,8 @@ const charactersContainer = document.querySelector(".charactersContainer");
 const favoritesList = document.querySelector(".favoritesContainer");
 const popularCharacters = document.querySelector(".mostPopularCharacters");
 const searchSection = document.querySelector(".searchSection");
+const form = document.querySelector(".form");
+const searchSectionContent = document.querySelector(".searchSectionContent");
 
 const favoriteCharacters = [];
 
@@ -14,6 +16,8 @@ function fetchCharacters() {
       const characters = result?.data || [];
       displayList(characters, charactersContainer);
       displayPopularCharacters(characters);
+      form.addEventListener("submit", () => searchCharacter(event, characters));
+      //   console.log(characters);
     })
     .catch((error) => {
       console.log(error);
@@ -24,6 +28,7 @@ function displayList(characters, container) {
   const filmCharacters = characters.filter(
     (character) => character.films.length
   );
+  //   console.log(filmCharacters);
 
   filmCharacters.forEach((character) => {
     const singleCharacter = document.createElement("div");
@@ -71,6 +76,9 @@ function displayList(characters, container) {
       addToFavoritesStars
     );
   });
+  const searchSectionDescription = document.createElement("p");
+  searchSectionDescription.innerText = `List of ${filmCharacters.length} with own Film`;
+  searchSectionContent.prepend(searchSectionDescription);
 }
 
 function changeStar(starId) {
@@ -98,7 +106,7 @@ function addToFavorites(selectedCharacter) {
 }
 
 function displayPopularCharacters(characters) {
-  const sortedCharacters = characters
+  const sortedCharacters = [...characters]
     .sort((a, b) => b.films.length - a.films.length)
     .splice(0, 3);
   console.log(sortedCharacters);
@@ -149,6 +157,34 @@ function displayPopularCharacters(characters) {
       tvContainer
     );
   });
+}
+
+function searchCharacter(event, characters) {
+  event.preventDefault();
+  const searchValue = document
+    .querySelector(".searchInput")
+    .value.toLowerCase()
+    .trim();
+  console.log(searchValue);
+  const resultArray = characters.filter((character) =>
+    character.name.toLowerCase().includes(searchValue)
+  );
+  if (searchValue !== "" && resultArray.length) {
+    charactersContainer.innerText = "";
+    displayList(resultArray, charactersContainer);
+    console.log(resultArray);
+  } else if (searchValue === "") {
+    charactersContainer.innerText = "";
+    const filmCharacters = characters.filter(
+      (character) => character.films.length
+    );
+    displayList(filmCharacters, charactersContainer);
+  } else {
+    charactersContainer.innerText = "";
+    const alert = document.createElement("p");
+    alert.innerText = "No such character found";
+    charactersContainer.append(alert);
+  }
 }
 
 fetchCharacters();
