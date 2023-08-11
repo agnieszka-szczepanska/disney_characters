@@ -60,30 +60,121 @@ header {
 
 .searchSection {
   background-color: rgb(207, 206, 206);
+  height: auto;
+  padding: 50px 0;
+}
+.searchSectionContainer {
+  background-color: rgb(65, 64, 64);
+  color: white;
+  display: flex;
+  margin: 0 5% 0 5%;
+  padding: 20px 20px;
+  border-radius: 15px;
+}
+.searchSectionContainer img {
+  width: 30%;
+  height: auto;
+  margin-right: 40px;
+}
+.searchSectionContent p {
+  font-size: 0.7rem;
+}
+.searchSectionContent h1 {
+  font-size: 1.8rem;
+  margin: 15px 0;
+  width: 70%;
+}
+.form input {
+  padding: 5px;
+  width: 70%;
 }
 
 .container {
   background-color: rgb(207, 206, 206);
   display: flex;
 }
-.charactersContainer {
+
+.charactersContainer,
+.favoritesCharacterContainer {
   display: flex;
   flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  margin: 0 5% 0 5%;
+  width: 50%;
+  padding: 20px;
 }
+.favoritesCharacterContainer {
+  min-height: 100%;
+}
+.characterListHeadings,
 .singleCharacter {
-  display: flex;
-  justify-content: space-between;
+  margin: 10px 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
   align-items: center;
 }
+.characterListHeadings p:nth-child(1),
+.characterImgContainer {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+.characterListHeadings p:nth-child(2),
+.nameContainer {
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+.characterListHeadings p:nth-child(4),
+.count {
+  grid-column: 3/4;
+  grid-row: 1/2;
+  justify-self: center;
+}
+.characterListHeadings p:nth-child(5),
+.starsContainer {
+  grid-column: 4/5;
+  grid-row: 1/2;
+  justify-self: center;
+}
+.singleCharacter {
+  margin: 10px 0;
+}
+.characterImgContainer {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+}
+.characterImgContainer img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+}
+.nameContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
 .tvIcon {
-  width: 40px;
+  width: 20px;
   cursor: pointer;
 }
 ul {
   list-style-type: none;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  font-size: 0.6rem;
+  position: absolute;
+  top: -30px;
+  right: 0px;
 }
 .hidden {
   display: none;
+}
+.tvIcon:hover + .hidden {
+  display: block;
 }
 .star {
   cursor: pointer;
@@ -100,6 +191,13 @@ ul {
 .vissible {
   display: block;
 }
-.tvIcon:hover + .hidden {
-  display: block;
+footer {
+  padding: 50px 0;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+footer img {
+  width: 15px;
 }

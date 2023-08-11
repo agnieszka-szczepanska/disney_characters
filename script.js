@@ -35,17 +35,19 @@ function displayList(characters, container) {
     singleCharacter.className = "singleCharacter";
     container.append(singleCharacter);
 
+    const characterImgContainer = document.createElement("div");
+    characterImgContainer.classList = "characterImgContainer";
     const characterImg = document.createElement("img");
     characterImg.src = `${character.imageUrl}`;
     characterImg.alt = "character image";
+    characterImgContainer.append(characterImg);
 
+    const nameContainer = document.createElement("div");
+    nameContainer.classList = "nameContainer";
     const characterName = document.createElement("p");
     characterName.innerText = `${character.name}`;
 
     const tvIcon = document.createElement("img");
-    tvIcon.className = "tvIcon";
-    tvIcon.alt = "tv icon";
-
     const tvShowsList = document.createElement("ul");
     tvShowsList.className = "hidden";
     if (character.tvShows.length) {
@@ -54,10 +56,14 @@ function displayList(characters, container) {
         const listElement = document.createElement("li");
         listElement.innerText = `${tvShow}`;
         tvShowsList.append(listElement);
+        tvIcon.className = "tvIcon";
+        tvIcon.alt = "tv icon";
       });
     }
+    nameContainer.append(characterName, tvIcon, tvShowsList);
 
     const filmsCount = document.createElement("p");
+    filmsCount.classList = "count";
     filmsCount.innerText = `${character.films.length}`;
 
     const addToFavoritesStars = document.createElement("div");
@@ -71,10 +77,8 @@ function displayList(characters, container) {
     );
 
     singleCharacter.append(
-      characterImg,
-      characterName,
-      tvIcon,
-      tvShowsList,
+      characterImgContainer,
+      nameContainer,
       filmsCount,
       addToFavoritesStars
     );
