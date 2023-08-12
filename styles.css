@@ -222,3 +222,77 @@ footer {
 footer img {
   width: 15px;
 }
+
+@media (max-width: 900px) {
+  .container {
+    padding: 0 5% 50px 5%;
+    gap: 5%;
+  }
+  .charactersListContainer,
+  .favoritesCharacterContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    width: 50%;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 750px) {
+  .characterImgContainer {
+    width: 40px;
+    height: 40px;
+  }
+  .characterImgContainer img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+  }
+  .searchSectionContainer img {
+    width: 150px;
+    height: auto;
+  }
+  .searchSectionContent h1,
+  .form input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .mostPopularCharactersContainer {
+    padding: 0;
+  }
+  .mostPopularCharactersContainer h1,
+  .searchSectionContent h1 {
+    font-size: 1.5rem;
+  }
+  .mostPopularCharacters {
+    flex-direction: column;
+    gap: 0;
+    margin-top: 0;
+  }
+
+  .popularCharacter:hover {
+    scale: 0.8;
+  }
+  .popularCharacter {
+    scale: 0.8;
+    margin-bottom: -40px;
+  }
+  .searchSectionContainer img {
+    display: none;
+  }
+  .container {
+    flex-direction: column;
+  }
+  .charactersListContainer,
+  .favoritesCharacterContainer {
+    width: 100%;
+  }
+  footer {
+    width: 90%;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+}
