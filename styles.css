@@ -4,7 +4,11 @@
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
 }
-
+body {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
 header {
   background-color: rgb(207, 206, 206);
   font-size: 0.5rem;
@@ -34,6 +38,10 @@ header {
   background-color: rgb(255, 255, 255);
   box-shadow: 2px 0px 10px gray;
   overflow: hidden;
+  transition: 1s;
+}
+.popularCharacter:hover {
+  scale: 1.1;
 }
 .popularCharacter img {
   min-width: 150px;
@@ -117,6 +125,12 @@ header {
   grid-template-columns: 1fr 2fr 1fr 1fr;
   align-items: center;
 }
+.singleCharacter {
+  font-weight: 400;
+}
+.singleCharacter:hover {
+  font-weight: 700;
+}
 .characterListHeadings p:nth-child(1),
 .characterImgContainer {
   grid-column: 1/2;
@@ -181,6 +195,10 @@ ul {
 }
 .star {
   cursor: pointer;
+  transition: ease-in-out;
+}
+.star:hover {
+  transform: scale(1.2) rotate(180deg);
 }
 .star::after {
   content: url("./assets/emptyStar.png");

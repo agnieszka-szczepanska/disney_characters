@@ -198,6 +198,7 @@ function searchCharacter(event, characters) {
     charactersContainer.innerText = "";
     const alert = document.createElement("p");
     alert.innerText = "No such character found";
+    alert.style.color = "red";
     charactersContainer.append(alert);
   }
 }
