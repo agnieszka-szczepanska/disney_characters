@@ -16,19 +16,28 @@ function fetchCharacters() {
       const characters = result?.data || [];
       displayList(characters, charactersContainer);
       displayPopularCharacters(characters);
+      displaySearchDescription(characters);
       form.addEventListener("submit", () => searchCharacter(event, characters));
-      //   console.log(characters);
     })
     .catch((error) => {
       console.log(error);
     });
 }
 
+function displaySearchDescription(characters) {
+  const filmCharacters = characters.filter(
+    (character) => character.films.length
+  );
+  console.log(filmCharacters);
+  const searchSectionDescription = document.createElement("p");
+  searchSectionDescription.innerText = `List of ${filmCharacters.length} with own Film`;
+  searchSectionContent.prepend(searchSectionDescription);
+}
+
 function displayList(characters, container) {
   const filmCharacters = characters.filter(
     (character) => character.films.length
   );
-  //   console.log(filmCharacters);
 
   filmCharacters.forEach((character) => {
     const singleCharacter = document.createElement("div");
@@ -83,9 +92,6 @@ function displayList(characters, container) {
       addToFavoritesStars
     );
   });
-  const searchSectionDescription = document.createElement("p");
-  searchSectionDescription.innerText = `List of ${filmCharacters.length} with own Film`;
-  searchSectionContent.prepend(searchSectionDescription);
 }
 
 function changeStar(starId) {
