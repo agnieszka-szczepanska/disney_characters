@@ -63,6 +63,10 @@ header a {
   height: 100px;
   padding: 5px 10px;
 }
+.characterDataContainer div {
+  display: flex;
+  justify-content: space-between;
+}
 
 .popularData {
   font-size: 0.8rem;
