@@ -190,6 +190,7 @@ function searchCharacter(event, characters) {
     const filmCharacters = characters.filter(
       (character) => character.films.length
     );
+
     displayList(filmCharacters, charactersContainer);
   } else {
     charactersContainer.innerText = "";
@@ -244,7 +245,9 @@ template("favorites", function () {
   favorites();
 });
 route("/#", "home");
+route("/disney_characters/#", "home");
 route("/favorites", "favorites");
+route("/disney_characters/favorites", "favorites");
 
 function resolveRoute(route) {
   try {
