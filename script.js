@@ -236,6 +236,7 @@ function route(path, template) {
 function template(name, templateFunction) {
   return (templates[name] = templateFunction);
 }
+
 template("home", function () {
   home();
 });
@@ -253,9 +254,19 @@ function resolveRoute(route) {
   }
 }
 function router(evt) {
-  let url = window.location.hash.slice(1) || "/#";
-  let route = resolveRoute(url);
-  route();
+  if (
+    window.location.href ===
+    "https://agnieszka-szczepanska.github.io/disney_characters/#/favorites"
+  ) {
+    let url = "/disney_characters/";
+    let route = resolveRoute(url);
+    route();
+  } else {
+    let url = window.location.hash.slice(1) || "/#";
+    console.log(url);
+    let route = resolveRoute(url);
+    route();
+  }
 }
 window.addEventListener("load", router);
 window.addEventListener("hashchange", router);
