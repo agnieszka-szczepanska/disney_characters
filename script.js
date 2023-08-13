@@ -258,7 +258,8 @@ function router(evt) {
     window.location.href ===
     "https://agnieszka-szczepanska.github.io/disney_characters/#/favorites"
   ) {
-    let url = "/disney_characters/";
+    let base_url = window.location.pathname.replace(/\/$/, "");
+    let url = `${base_url}#/favorites` || "/disney_characters/#";
     let route = resolveRoute(url);
     route();
   } else {
