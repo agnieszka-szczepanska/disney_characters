@@ -245,9 +245,9 @@ template("favorites", function () {
   favorites();
 });
 route("/#", "home");
-route("/disney_characters/", "home");
+route("/disney_characters/#", "home");
 route("/favorites", "favorites");
-route("/disney_characters/favorites", "favorites");
+route("/disney_characters/#/favorites", "favorites");
 
 function resolveRoute(route) {
   try {
