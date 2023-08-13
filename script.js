@@ -203,4 +203,64 @@ function searchCharacter(event, characters) {
   }
 }
 
-fetchCharacters();
+// fetchCharacters();
+
+let routes = {};
+let templates = {};
+const link = document.createElement("a");
+
+function home() {
+  fetchCharacters();
+  link.href = "#/favorites";
+  link.innerText = "Favorites";
+  const header = document.querySelector("header");
+  header.appendChild(link);
+}
+function favorites() {
+  link.href = "/";
+  link.innerText = "Home";
+  const header = document.querySelector("header");
+  header.appendChild(link);
+  document.querySelector(".mostPopularCharactersContainer").style.display =
+    "none";
+  document.querySelector(".searchSection").style.display = "none";
+  document.querySelector(".charactersListContainer").style.display = "none";
+  document.querySelector(".favoritesCharacterContainer").style.width = "100%";
+  document.querySelector(".favoritesCharacterContainer").style.height = "80vh";
+  fetchCharacters();
+}
+function route(path, template) {
+  if (typeof template === "function") {
+    return (routes[path] = template);
+  } else if (typeof template === "string") {
+    return (routes[path] = templates[template]);
+  } else {
+    return;
+  }
+}
+function template(name, templateFunction) {
+  return (templates[name] = templateFunction);
+}
+template("home", function () {
+  home();
+});
+template("favorites", function () {
+  favorites();
+});
+route("/", "home");
+route("/favorites", "favorites");
+
+function resolveRoute(route) {
+  try {
+    return routes[route];
+  } catch (e) {
+    throw new Error(`Route ${route} not found`);
+  }
+}
+function router(evt) {
+  let url = window.location.hash.slice(1) || "/";
+  let route = resolveRoute(url);
+  route();
+}
+window.addEventListener("load", router);
+window.addEventListener("hashchange", router);
