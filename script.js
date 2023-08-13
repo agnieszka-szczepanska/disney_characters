@@ -28,7 +28,6 @@ function displaySearchDescription(characters) {
   const filmCharacters = characters.filter(
     (character) => character.films.length
   );
-  console.log(filmCharacters);
   const searchSectionDescription = document.createElement("p");
   searchSectionDescription.innerText = `List of ${filmCharacters.length} with own Film`;
   searchSectionContent.prepend(searchSectionDescription);
@@ -180,14 +179,12 @@ function searchCharacter(event, characters) {
     .querySelector(".searchInput")
     .value.toLowerCase()
     .trim();
-  console.log(searchValue);
   const resultArray = characters.filter((character) =>
     character.name.toLowerCase().includes(searchValue)
   );
   if (searchValue !== "" && resultArray.length) {
     charactersContainer.innerText = "";
     displayList(resultArray, charactersContainer);
-    console.log(resultArray);
   } else if (searchValue === "") {
     charactersContainer.innerText = "";
     const filmCharacters = characters.filter(
@@ -202,8 +199,6 @@ function searchCharacter(event, characters) {
     charactersContainer.append(alert);
   }
 }
-
-// fetchCharacters();
 
 let routes = {};
 let templates = {};
@@ -247,7 +242,7 @@ template("home", function () {
 template("favorites", function () {
   favorites();
 });
-route("/", "home");
+route("/#", "home");
 route("/favorites", "favorites");
 
 function resolveRoute(route) {
@@ -258,7 +253,7 @@ function resolveRoute(route) {
   }
 }
 function router(evt) {
-  let url = window.location.hash.slice(1) || "/";
+  let url = window.location.hash.slice(1) || "/#";
   let route = resolveRoute(url);
   route();
 }
