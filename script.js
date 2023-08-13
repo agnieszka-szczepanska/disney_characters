@@ -245,7 +245,7 @@ template("favorites", function () {
   favorites();
 });
 route("/#", "home");
-route("/disney_characters/#", "home");
+route("/disney_characters/", "home");
 route("/favorites", "favorites");
 route("/disney_characters/favorites", "favorites");
 
@@ -261,8 +261,14 @@ function router(evt) {
     window.location.href ===
     "https://agnieszka-szczepanska.github.io/disney_characters/#/favorites"
   ) {
-    let base_url = window.location.pathname.replace(/\/$/, "");
-    let url = `${base_url}#/favorites` || "/disney_characters/#";
+    let url = "/disney_characters/#/favorites";
+    let route = resolveRoute(url);
+    route();
+  } else if (
+    window.location.href ===
+    "https://agnieszka-szczepanska.github.io/disney_characters/#"
+  ) {
+    let url = "/disney_characters/#";
     let route = resolveRoute(url);
     route();
   } else {
