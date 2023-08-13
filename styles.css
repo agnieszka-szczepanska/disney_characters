@@ -271,6 +271,11 @@ footer img {
   .form input {
     width: 100%;
   }
+  footer {
+    width: 90%;
+    text-align: center;
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width: 560px) {
@@ -303,10 +308,5 @@ footer img {
   .charactersListContainer,
   .favoritesCharacterContainer {
     width: 100%;
-  }
-  footer {
-    width: 90%;
-    text-align: center;
-    flex-wrap: wrap;
   }
 }

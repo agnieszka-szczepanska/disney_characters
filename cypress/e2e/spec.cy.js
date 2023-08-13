@@ -1,6 +1,6 @@
 describe("Testing Disney Character Page", () => {
   beforeEach(() => {
-    cy.visit("http://127.0.0.1:5501/index.html");
+    cy.visit("https://agnieszka-szczepanska.github.io/disney_characters/");
   });
 
   it("displays the Most Popular section", () => {
