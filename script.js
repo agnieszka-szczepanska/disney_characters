@@ -3,6 +3,7 @@ const favoritesList = document.querySelector(".favoritesContainer");
 const popularCharacters = document.querySelector(".mostPopularCharacters");
 const searchSection = document.querySelector(".searchSection");
 const form = document.querySelector(".form");
+const input = document.querySelector(".searchInput");
 const searchSectionContent = document.querySelector(".searchSectionContent");
 
 const favoriteCharacters = [];
@@ -17,7 +18,7 @@ function fetchCharacters() {
       displayList(characters, charactersContainer);
       displayPopularCharacters(characters);
       displaySearchDescription(characters);
-      form.addEventListener("submit", () => searchCharacter(event, characters));
+      input.addEventListener("input", () => searchCharacter(event, characters));
     })
     .catch((error) => {
       console.log(error);
@@ -37,7 +38,6 @@ function displayList(characters, container) {
   const filmCharacters = characters.filter(
     (character) => character.films.length
   );
-  console.log(characters);
 
   filmCharacters.forEach((character) => {
     const singleCharacter = document.createElement("div");
@@ -214,7 +214,7 @@ function home() {
   header.appendChild(link);
 }
 function favorites() {
-  link.href = "/";
+  link.href = "#/";
   link.innerText = "Home";
   const header = document.querySelector("header");
   header.appendChild(link);
@@ -274,7 +274,6 @@ function router(evt) {
     route();
   } else {
     let url = window.location.hash.slice(1) || "/#";
-    console.log(url);
     let route = resolveRoute(url);
     route();
   }
