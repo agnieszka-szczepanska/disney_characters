@@ -8,7 +8,7 @@ const searchSectionContent = document.querySelector(".searchSectionContent");
 const favoriteCharacters = [];
 
 function fetchCharacters() {
-  fetch("https://api.disneyapi.dev/character", {
+  fetch("https://api.disneyapi.dev/character?pageSize=100 ", {
     method: "GET",
   })
     .then((result) => result.json())
@@ -37,6 +37,7 @@ function displayList(characters, container) {
   const filmCharacters = characters.filter(
     (character) => character.films.length
   );
+  console.log(characters);
 
   filmCharacters.forEach((character) => {
     const singleCharacter = document.createElement("div");
