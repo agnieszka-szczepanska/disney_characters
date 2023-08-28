@@ -212,7 +212,6 @@ function home() {
   link.innerText = "Favorites";
   const header = document.querySelector("header");
   header.appendChild(link);
-  location.href = location.href;
 }
 function favorites() {
   link.href = "#/#";
@@ -270,11 +269,11 @@ function router(evt) {
     window.location.href ===
     "https://agnieszka-szczepanska.github.io/disney_characters/#"
   ) {
-    let url = "/disney_characters/#/#";
+    let url = "/disney_characters/#";
     let route = resolveRoute(url);
     route();
   } else {
-    let url = window.location.hash.slice(1) || "/#/#";
+    let url = window.location.hash.slice(1) || "/#";
     let route = resolveRoute(url);
     route();
   }
