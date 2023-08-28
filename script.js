@@ -258,22 +258,22 @@ function resolveRoute(route) {
   }
 }
 function router(evt) {
-  // if (
-  //   window.location.href ===
-  //   "https://agnieszka-szczepanska.github.io/disney_characters/#/favorites"
-  // ) {
-  //   let url = "/disney_characters/#/favorites";
-  //   let route = resolveRoute(url);
-  //   route();
-  // } else if (
-  //   window.location.href ===
-  //   "https://agnieszka-szczepanska.github.io/disney_characters/#"
-  // ) {
-  //   let url = "/disney_characters/#";
-  //   let route = resolveRoute(url);
-  //   route();
-  // } else {
-  let url = window.location.hash.slice(1) || "/#";
+  if (
+    window.location.href ===
+    "https://agnieszka-szczepanska.github.io/disney_characters/#/favorites"
+  ) {
+    let url = "/disney_characters/#/favorites";
+    let route = resolveRoute(url);
+    route();
+  } else if (
+    window.location.href ===
+    "https://agnieszka-szczepanska.github.io/disney_characters/#"
+  ) {
+    let url = "/disney_characters/#/#";
+    let route = resolveRoute(url);
+    route();
+  } else {
+  let url = window.location.hash.slice(1) || "/#/#";
   let route = resolveRoute(url);
   route();
   // }
