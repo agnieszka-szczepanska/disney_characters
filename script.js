@@ -212,6 +212,7 @@ function home() {
   link.innerText = "Favorites";
   const header = document.querySelector("header");
   header.appendChild(link);
+  location.href = location.href;
 }
 function favorites() {
   link.href = "#/#";
@@ -273,10 +274,10 @@ function router(evt) {
     let route = resolveRoute(url);
     route();
   } else {
-  let url = window.location.hash.slice(1) || "/#/#";
-  let route = resolveRoute(url);
-  route();
-  // }
+    let url = window.location.hash.slice(1) || "/#/#";
+    let route = resolveRoute(url);
+    route();
+  }
 }
 window.addEventListener("load", router);
 window.addEventListener("hashchange", router);
